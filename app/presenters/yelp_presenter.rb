@@ -18,15 +18,26 @@ class YelpPresenter
 		business["review_count"]
 	end
 
-	def one_star_ratings_until_dropping_half_star
-		target = rating - 0.5
-		required_ratings_of_value_to_hit_target(1, rating - 0.5)
+	def one_star_impacts
+		counts_until_impact = {}
+		next_lowest_rating = rating - 0.5
+		while next_lowest_rating >= 1
+			counts_until_impact[next_lowest_rating] = required_ratings_of_value_to_hit_target(1, next_lowest_rating)
+			next_lowest_rating -= 0.5
+		end
+
+		counts_until_impact
 	end
 
-	def five_star_ratings_until_five_stars
-		target = rating + 0.5
+	def five_star_impacts
+		counts_until_impact = {}
+		next_highest_rating = rating + 0.5
+		while next_highest_rating <= 4.5
+			counts_until_impact[next_highest_rating] = required_ratings_of_value_to_hit_target(5, next_highest_rating)
+			next_highest_rating += 0.5
+		end
 
-		required_ratings_of_value_to_hit_target(6, 6)
+		counts_until_impact
 	end
 
 	def required_ratings_of_value_to_hit_target(value, target)
@@ -35,7 +46,4 @@ class YelpPresenter
 		count = (review_count * (rating - target)) / (target - value)
 		count.ceil
 	end
-
-	# def years_on_yelp
-	# def reviews_per_year
 end
