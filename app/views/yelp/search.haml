@@ -25,7 +25,7 @@
 			%th Reviews
 		%tbody
 			- @yelp.nearby.each_with_index do |business, idx|
-				%tr
+				%tr{class: (business["name"] == @yelp.business_name) ? "current-search" : nil}
 					%td= idx + 1
 					%td= business["name"]
 					%td= business["rating"]
