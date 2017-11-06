@@ -4,12 +4,17 @@
 		border: 1px solid black;
 		min-width: 100px;
 	}
+
+	p {
+		margin: 0;
+	}
+
+	.rating-impacts {
+		display: inline-block;
+	}
+
+	.current-search {
+		background: lightyellow;
+	}
 }
 
-.rating-impacts {
-	display: inline-block;
-}
-
-.current-search {
-	background: lightyellow;
-}

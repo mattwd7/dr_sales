@@ -10,6 +10,10 @@ class YelpPresenter
 		business["name"]
 	end
 
+	def business_address
+		business.dig("location", "display_address")
+	end
+
 	def rating
 		business["rating"]
 	end

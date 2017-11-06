@@ -1,8 +1,11 @@
 = link_to "Back to search", root_path
 
 .search-results
-	%h2
-		= "Search results: #{@yelp.business_name}"
+	%h2= "Search results: #{@yelp.business_name}"
+
+	%p=@yelp.business_name
+	- @yelp.business_address.each do |address_component|
+		%p= address_component
 
 	%table
 		%thead
@@ -52,7 +55,7 @@
 			%table
 				%thead
 					%th Rating
-					%th Number of 5-star reviews
+					%th Number of 1-star reviews
 				%tbody
 					- @yelp.one_star_impacts.each do |rating, count|
 						%tr
