@@ -1,0 +1,16 @@
+%h1 Search a business on Yelp
+
+= form_tag('search', method: :get) do
+	%li
+		= label_tag :name
+		= text_field_tag :name
+
+	%li
+		= label_tag :location
+		= text_field_tag :location
+
+	%li
+		= label_tag "Nearby Term"
+		= text_field_tag :nearby_term
+
+	= submit_tag "Submit"
