@@ -14,7 +14,13 @@
 	}
 
 	.current-search {
-		background: lightyellow;
+		background: yellow;
+	}
+
+	.yelp,
+	.google {
+		display: inline-block;
+		width: 49%;
 	}
 }
 

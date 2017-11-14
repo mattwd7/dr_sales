@@ -3,63 +3,11 @@
 .search-results
 	%h2= "Search results: #{@yelp.business_name}"
 
-	%p=@yelp.business_name
+	%p= @yelp.business_name
 	- @yelp.business_address.each do |address_component|
 		%p= address_component
 
-	%table
-		%thead
-			%th Rating
-			%th Reviews
-		%tbody
-			%tr
-				%td Rating
-				%td= @yelp.rating
-			%tr
-				%td Reviews
-				%td= @yelp.review_count
-
-	%h3 Rank among nearby businesses (10 mile radius):
-	%table
-		%thead
-			%th No.
-			%th Business Name
-			%th Rating
-			%th Reviews
-		%tbody
-			- @yelp.nearby.each_with_index do |business, idx|
-				%tr{class: (business["name"] == @yelp.business_name) ? "current-search" : nil}
-					%td= idx + 1
-					%td= business["name"]
-					%td= business["rating"]
-					%td= business["review_count"]
-
-	.rating-impacts
-		%h3 Effects of 5-star ratings:
-		- if @yelp.rating < 5
-			%table
-				%thead
-					%th Rating
-					%th Number of 5-star reviews
-				%tbody
-					- @yelp.five_star_impacts.each do |rating, count|
-						%tr
-							%td= rating
-							%td= count
-		- else
-			N/A: 5-star rated.
-
-	.rating-impacts
-		- if @yelp.rating > 1
-			%h3 Effects of 1-star ratings:
-			%table
-				%thead
-					%th Rating
-					%th Number of 1-star reviews
-				%tbody
-					- @yelp.one_star_impacts.each do |rating, count|
-						%tr
-							%td= rating
-							%td= count
-		- else
-			N/A: 1-star rated.
+	.google
+		= render partial: 'search_results', locals: { query: @google, name: "Google" }
+	.yelp
+		= render partial: 'search_results', locals: { query: @yelp, name: "Yelp" }

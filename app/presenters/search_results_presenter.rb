@@ -1,33 +1,4 @@
-class YelpPresenter < SearchResultsPresenter
-	attr_reader :business, :nearby
-
-	def initialize(yelp_query)
-		@business = yelp_query.business
-		@nearby = yelp_query.nearby
-	end
-
-	def business_name
-		business["name"]
-	end
-
-	def business_address
-		business.dig("location", "display_address")
-	end
-
-	def rating
-		business["rating"]
-	end
-
-	def review_count
-		business["review_count"]
-	end
-
-	def nearby_sorted
-		nearby.sort_by do |a|
-			[a["rating"], a["review_count"]]
-		end.reverse
-	end
-
+class SearchResultsPresenter
 	def one_star_impacts
 		counts_until_impact = {}
 		next_lowest_rating = rating - 0.5

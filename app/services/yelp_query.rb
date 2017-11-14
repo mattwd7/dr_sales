@@ -1,4 +1,4 @@
-class YelpQuery
+class YelpQuery < Query
 	CLIENT_ID = "ivN84k_i8ZLkyvZxYiZjpQ"
 	CLIENT_SECRET = "vVuS65bzOtzbtDHwFJRZiOuIsiNUambpuvenqk9RwKoqZajkbqXqPQg0wdC4Mpv5"
 
@@ -37,7 +37,6 @@ class YelpQuery
 	    limit: SEARCH_LIMIT
 	  }.merge(params)
 
-		puts params
 	  response = HTTP.auth(token).get(url, params: params)
 	  response.parse
 	end
